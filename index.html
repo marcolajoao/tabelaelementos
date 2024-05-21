@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabela Periódica</title>
+    <style>
+        .message {
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid;
+            display: none;
+        }
+        .success {
+            color: green;
+            border-color: green;
+        }
+        .error {
+            color: red;
+            border-color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Tabela de Elementos</h1>
+
+    <form id="buscar-form">
+        <label for="numero-atomico">Digite o Número Atômico:</label>
+        <input type="number" id="numero-atomico" name="numero-atomico" required>
+        <button type="submit">Buscar</button>
+    </form>
+
+    <div id="message" class="message"></div>
+
+    <table id="elementos-tabela" border="1">
+        <thead>
+            <tr>
+                <th>Número Atômico</th>
+                <th>Nome</th>
+                <th>Massa</th>
+                <th>Distribuição Eletrônica</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Dados serão inseridos aqui -->
+        </tbody>
+    </table>
+
+    <script>
+        const elementos = [
+            {
+                "numero_atomico": 1,
+                "nome": "Hidrogênio",
+                "massa": 1.008,
+                "distribuicao_eletronica": "1s1"
+            },
+            {
+                "numero_atomico": 2,
+                "nome": "Hélio",
+                "massa": 4.0026,
+                "distribuicao_eletronica": "1s2"
+            },
+            {
+                "numero_atomico": 3,
+                "nome": "Lítio",
+                "massa": 6.94,
+                "distribuicao_eletronica": "[He] 2s1"
+            }
+            // Adicione outros elementos conforme necessário...
+        ];
+
+        document.getElementById('buscar-form').addEventListener('submit', function(event) {
+            event.preventDefault(); // Evita o reload da página ao enviar o formulário
+            const numeroAtomico = document.getElementById('numero-atomico').value;
+            const elementoEncontrado = elementos.find(elemento => elemento.numero_atomico == numeroAtomico);
+
+            const tabelaBody = document.getElementById('elementos-tabela').getElementsByTagName('tbody')[0];
+            const messageDiv = document.getElementById('message');
+            tabelaBody.innerHTML = ''; // Limpa os resultados anteriores
+
+            if (elementoEncontrado) {
+                const row = tabelaBody.insertRow();
+                row.insertCell(0).innerText = elementoEncontrado.numero_atomico;
+                row.insertCell(1).innerText = elementoEncontrado.nome;
+                row.insertCell(2).innerText = elementoEncontrado.massa;
+                row.insertCell(3).innerText = elementoEncontrado.distribuicao_eletronica;
+
+                messageDiv.innerText = 'Elemento encontrado com sucesso!';
+                messageDiv.className = 'message success';
+                messageDiv.style.display = 'block';
+            } else {
+                const row = tabelaBody.insertRow();
+                row.insertCell(0).innerText = 'N/A';
+                row.insertCell(1).innerText = 'Elemento não encontrado';
+                row.insertCell(2).innerText = 'N/A';
+                row.insertCell(3).innerText = 'N/A';
+
+                messageDiv.innerText = 'Elemento não encontrado.';
+                messageDiv.className = 'message error';
+                messageDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
