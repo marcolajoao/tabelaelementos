@@ -11,10 +11,10 @@ body {
   position: relative;
   width: 120px;
   height: 40px;
-  background-color: #000;
+  background-color: #f8ecec;
   display: flex;
   align-items: center;
-  color: white;
+  color: #000;
   flex-direction: column;
   justify-content: center;
   border: none;
