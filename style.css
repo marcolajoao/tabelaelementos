@@ -76,8 +76,8 @@ body {
     border-radius: 5px; 
 }
 .success {
-    color: green;
-    border-color: green;
+    color: #220051;
+    border-color: #220051;
 }
 .error {
     color: red;
