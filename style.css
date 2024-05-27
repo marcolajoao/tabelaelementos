@@ -67,12 +67,13 @@ body {
 .message {
     margin-top: 10px;
     padding: 10px;
-    border: 1px solid;
+    border: 5px solid;
     display: none;
     text-align: center; /* Centraliza o texto na div */
     max-width: 300px; /* Define uma largura máxima para a div */
     margin-left: auto; /* Centraliza horizontalmente */
     margin-right: auto; /* Centraliza horizontalmente */
+    border-radius: 5px; 
 }
 .success {
     color: green;
